@@ -1,0 +1,17 @@
+---
+
+location_types:
+  - "!create_or_update:name": "Region"
+    nestable: true
+    children:
+      - "!create_or_update:name": "Country"
+        nestable: true
+        
+    locations:
+      - "!create_or_update:name": "{{ region_name }}"
+        status__name: "Active"
+        children:
+        - "!create_or_update:name": " {{ country_name }} "
+          location_type__name: "Country"
+          status__name: "Active"
+          
