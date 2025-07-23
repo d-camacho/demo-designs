@@ -1,6 +1,8 @@
-from nautobot.apps.jobs import DesignJob, register_jobs, IPNetworkVar, StringVar
+from nautobot.apps.jobs import register_jobs, IPNetworkVar, StringVar
 from nautobot.dcim.models import LocationType, Location
 from nautobot.ipam.models import Prefix, PrefixRole
+
+from nautobot_design_builder.design_job import DesignJob
 
 from .context import LocationHierarchyContext
 
