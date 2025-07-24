@@ -1,6 +1,6 @@
 ---
 location_types:
-  - name: "Region"
+  - name: "Continent"
     nestable: true
     children:
       - name: "Country"
@@ -8,7 +8,7 @@ location_types:
 
 locations:
   - name: "{{ region_name }}"
-    location_type__name: "Region"
+    location_type__name: "Continent"
     status__name: "Active"
     prefixes:
       - prefix: "{{ region_prefix }}"
