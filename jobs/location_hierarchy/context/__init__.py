@@ -1,4 +1,4 @@
-from nautobot.extras.jobs import IPNetworkVar
+
 from nautobot.dcim.models import Location
 
 from nautobot_design_builder.context import Context
@@ -17,20 +17,20 @@ class LocationHierarchyContext(Context):
     
 
     def validate_new_region_and_country(self):
-        """Ensure region and country don't already exist."""
-        # Check region
+        """Ensure region and country do not already exist."""
+        # Check for existing top-level region; no parent
         try:
-            region = Location.objects.get(name__iexact=self.region_name, location_type__name="Region")
-            raise DesignValidationError(f"A region already exists with the name '{self.region_name}'.")
+            Location.objects.get(name__iexact=self.region_name.strip(), location_type__name="Region")
+            raise DesignValidationError(f"A region with the name '{self.region_name}' already exists.")
         except Location.DoesNotExist:
             pass
 
         # Check country under the region
         try:
-            country = Location.objects.get(
+            Location.objects.get(
                 name__iexact=self.country_name.strip(),
                 location_type__name="Country",
-                parent__name__iexact=self.region_name,
+                parent__name__iexact=self.region_name.strip(),
             )
             raise DesignValidationError(f"A country named '{self.country_name}' already exists under region '{self.region_name}'.")
         except Location.DoesNotExist:

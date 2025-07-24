@@ -9,14 +9,24 @@ class LocationHierarchyDesign(DesignJob):
     
     region_name = StringVar(
         label="Region",
-        description="Parent Region i.e. Americas, Europe, etc.",
+        description="Parent Region e.g. Americas, Europe, etc.",
     )
     country_name = StringVar(
         label="Country",
-        description="Country where sites are located.",
+        description="Country where sites will be located (e.g., United States)",
     )
-    region_prefix=IPNetworkVar(min_prefix_length=8, max_prefix_length=16)
-    country_prefix=IPNetworkVar(min_prefix_length=8, max_prefix_length=16)
+    region_prefix = IPNetworkVar(
+        label="Region Prefix",
+        min_prefix_length=8,
+        max_prefix_length=16,
+        description="Top-level container prefix (e.g., 10.0.0.0/8)",
+    )
+    country_prefix = IPNetworkVar(
+        label="Country Prefix",
+        min_prefix_length=8,
+        max_prefix_length=16,
+        description="Child container prefix for the country (e.g., 10.1.0.0/12)",
+    )
     has_sensitive_variables = False
 
     class Meta:
@@ -24,10 +34,14 @@ class LocationHierarchyDesign(DesignJob):
         
         name = "Location Hierarchy Design"
         commit_default = False
-        description = "Creates nested location structure with assigned prefix."
+        description = "Creates nested location structure with assigned container prefix."
         design_file = "designs/hierarchy_design.yaml.j2"
         context_class = LocationHierarchyContext
         nautobot_version = ">=2"
+
+        def pre_implementation_validation(self, context):
+            """Run validation before rendering the design."""
+            context.validate_new_region_and_country()
 
 name = "Demo Designs"
 register_jobs(LocationHierarchyDesign)
