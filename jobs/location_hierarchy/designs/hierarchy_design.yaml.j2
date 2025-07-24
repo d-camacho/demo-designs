@@ -12,8 +12,8 @@ locations:
     status__name: "Active"
     prefixes:
       - prefix: "{{ region_prefix }}"
-        status__name: "Active"
-        "!ref": "region_prefix"
+        
+        
     children:
       - name: "{{ country_name }}"
         location_type__name: "Country"
@@ -21,5 +21,5 @@ locations:
         description: "Sub-region of {{ region_name }}"
         prefixes:
           - prefix: "{{ country_prefix }}"
-            status__name: "Active"
-            "!ref": "country_prefix"
+          
+            
