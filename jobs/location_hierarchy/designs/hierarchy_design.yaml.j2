@@ -1,28 +1,29 @@
 ---
-
 location_types:
   - "!create_or_update:name": "Region"
     nestable: true
     children:
       - "!create_or_update:name": "Country"
         nestable: true
-        
+
     locations:
       - "!create_or_update:name": "{{ region_name }}"
         location_type__name: "Region"
         status__name: "Active"
         prefixes:
-        - prefix: "{{ region_prefix }}"
-          status__name: "Active"
-        
-            
-      
+          - "!create_or_update:prefix": "{{ region_prefix }}"
+            status__name: "Active"
+            type__name: "Container"
+            description: "Top-level container prefix for region {{ region_name }}"
+            "!ref": "region_prefix"
+
         children:
-        - "!create_or_update:name": "{{ country_name }}"
-          location_type__name: "Country"
-          status__name: "Active"
-         
-         
-         
-            
-          
+          - "!create_or_update:name": "{{ country_name }}"
+            location_type__name: "Country"
+            status__name: "Active"
+            prefixes:
+              - "!create_or_update:prefix": "{{ country_prefix }}"
+                status__name: "Container"
+                is_pool: false
+                description: "Prefix for {{ country_name }}"
+                parent: "!ref:region_prefix"
