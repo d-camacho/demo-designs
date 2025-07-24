@@ -16,20 +16,23 @@ class LocationHierarchyContext(Context):
     region_prefix: IPNetwork
     country_prefix: IPNetwork
 
-    
-    def validate(self):
-            self._validate_region()
-            self._validate_country()
-            self._validate_prefix()
-
     def _validate_region(self):
-        if Location.objects.filter(name__iexact=self.region_name).exists():
+        try:
+            Location.objects.filter(name__iexact=self.region_name).exists()
             raise DesignValidationError(f"Region '{self.region_name}' already exists.")
+        except Location.DoesNotExist:
+            return
 
     def _validate_country(self):
-        if Location.objects.filter(name__iexact=self.country_name).exists():
+        try:
+            Location.objects.filter(name__iexact=self.country_name).exists()
             raise DesignValidationError(f"Country '{self.country_name}' already exists.")
+        except Location.DoesNotExist:
+            return
     
     def _validate_prefix(self):
-        if Prefix.objects.filter(prefix=self.region_prefix).exists():
+        try:
+            Prefix.objects.filter(prefix=self.region_prefix).exists()
             raise DesignValidationError(f"Prefix {self.region_prefix} already exists.")
+        except Prefix.DoesNotExist:
+            return 
