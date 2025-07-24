@@ -8,14 +8,14 @@ location_types:
         nestable: true
         
     locations:
-      - "!create_or_update:name": "Europe"
+      - "!create_or_update:name": "{{ region_name }}"
         location_type__name: "Region"
         status__name: "Active"
         
             
       
         children:
-        - "!create_or_update:name": "Germany"
+        - "!create_or_update:name": "{{ country_name }}"
           location_type__name: "Country"
           status__name: "Active"
          
