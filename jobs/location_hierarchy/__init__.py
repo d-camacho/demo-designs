@@ -35,7 +35,7 @@ class LocationHierarchyDesign(DesignJob):
         name = "Location Hierarchy Design"
         commit_default = False
         description = "Creates nested location structure with assigned container prefix."
-        design_file = "designs/prefix.yaml.j2"
+        design_file = "designs/locations.yaml.j2"
         context_class = LocationHierarchyContext
         nautobot_version = ">=2"
 
