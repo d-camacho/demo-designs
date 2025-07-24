@@ -1,18 +1,13 @@
 ---
 
-
-
-
 locations:
   - name: "{{ region_name }}"
     location_type__name: "Continent"
     status__name: "Active"
-    prefixes:
-      - "!ref:region_prefix"
+    
     children:
       - name: "{{ country_name }}"
         location_type__name: "Country"
         status__name: "Active"
         description: "Sub-region of {{ region_name }}"
-        prefixes:
-          - "!ref:country_prefix"
+        
