@@ -1,5 +1,5 @@
 ---
-abstract: true
+
 designs:
   - prefixes:
       - prefix: "{{ region_prefix }}"
