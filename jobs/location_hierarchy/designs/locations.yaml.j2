@@ -12,12 +12,16 @@ location_types:
 locations:
   - "!create_or_update:name": "{{ region_name }}"
     location_type__name: "Region"
-    status__name: "Active" 
-  
+    status__name: "Active"
+    prefixes:
+      - "!ref:region_prefix"  
+
     children:
       - "!create_or_update:name": "{{ country_name }}"
         location_type__name: "Country"
         status__name: "Active"
         description: "Sub-region of {{ region_name }}"
+        prefixes:
+          - "!ref:region_prefix"
         
           
