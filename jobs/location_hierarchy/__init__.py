@@ -39,5 +39,5 @@ class LocationHierarchyDesign(DesignJob):
         context_class = LocationHierarchyContext
         nautobot_version = ">=2"
 
-name = "Demo Designs"
+name = "Builder Designs"
 register_jobs(LocationHierarchyDesign)
