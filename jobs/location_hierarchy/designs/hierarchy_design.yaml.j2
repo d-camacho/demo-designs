@@ -13,7 +13,6 @@ locations:
     prefixes:
       - prefix: "{{ region_prefix }}"
         status__name: "Active"
-        type: "container"
         "!ref": "region_prefix"
     children:
       - name: "{{ country_name }}"
@@ -23,5 +22,4 @@ locations:
         prefixes:
           - prefix: "{{ country_prefix }}"
             status__name: "Active"
-            type: "container"
             "!ref": "country_prefix"
