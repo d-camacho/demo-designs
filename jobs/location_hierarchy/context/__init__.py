@@ -16,23 +16,21 @@ class LocationHierarchyContext(Context):
     region_prefix: IPNetwork
     country_prefix: IPNetwork
 
+    def validate(self):
+        self._validate_region()
+        self._validate_country()
+        self._validate_prefixes()
+
     def _validate_region(self):
-        try:
-            Location.objects.filter(name__iexact=self.region_name).exists()
-            raise DesignValidationError(f"Region '{self.region_name}' already exists.")
-        except Location.DoesNotExist:
-            return
+        if Location.objects.filter(name__iexact=self.region_name).exists():
+            self.logger.warning(f"Region '{self.region_name}' already exists.")
 
     def _validate_country(self):
-        try:
-            Location.objects.filter(name__iexact=self.country_name).exists()
-            raise DesignValidationError(f"Country '{self.country_name}' already exists.")
-        except Location.DoesNotExist:
-            return
-    
-    def _validate_prefix(self):
-        try:
-            Prefix.objects.filter(prefix=self.region_prefix).exists()
-            raise DesignValidationError(f"Prefix {self.region_prefix} already exists.")
-        except Prefix.DoesNotExist:
-            return 
+        if Location.objects.filter(name__iexact=self.country_name).exists():
+            self.logger.warning(f"Country '{self.country_name}' already exists.")
+
+    def _validate_prefixes(self):
+        if Prefix.objects.filter(prefix=self.region_prefix).exists():
+            self.logger.warning(f"Prefix {self.region_prefix} already exists.")
+        if Prefix.objects.filter(prefix=self.country_prefix).exists():
+            self.logger.warning(f"Prefix {self.country_prefix} already exists.")
