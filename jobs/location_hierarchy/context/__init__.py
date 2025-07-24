@@ -13,8 +13,8 @@ class LocationHierarchyContext(Context):
 
     region_name: str
     country_name: str
-    region_prefix: IPNetwork
-    country_prefix: IPNetwork
+    region_prefix: str
+    country_prefix: str
 
     def validate(self):
         self._validate_region()
