@@ -1,22 +1,21 @@
 
 
-designs:
-  - location_types:
-    - "!create_or_update:name": "Region"
-      nestable: true
-      children:
-        - "!create_or_update:name": "Country"
-          nestable: true
+location_types:
+  - "!create_or_update:name": "Region"
+    nestable: true
+    children:
+      - "!create_or_update:name": "Country"
+        nestable: true
 
-  - locations:
-    - "!create_or_update:name": "{{ region_name }}"
-      location_type__name: "Continent"
-      status__name: "Active" 
-    
-      children:
-        - "!create_or_update:name": "{{ country_name }}"
-          location_type__name: "Country"
-          status__name: "Active"
-          description: "Sub-region of {{ region_name }}"
-         
+locations:
+  - "!create_or_update:name": "{{ region_name }}"
+    location_type__name: "Continent"
+    status__name: "Active" 
+  
+    children:
+      - "!create_or_update:name": "{{ country_name }}"
+        location_type__name: "Country"
+        status__name: "Active"
+        description: "Sub-region of {{ region_name }}"
+        
           
