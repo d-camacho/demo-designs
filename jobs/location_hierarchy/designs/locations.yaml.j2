@@ -1,4 +1,4 @@
-
+---
 
 location_types:
   - "!create_or_update:name": "Region"
@@ -9,7 +9,7 @@ location_types:
 
 locations:
   - "!create_or_update:name": "{{ region_name }}"
-    location_type__name: "Continent"
+    location_type__name: "Region"
     status__name: "Active" 
   
     children:
