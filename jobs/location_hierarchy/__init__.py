@@ -16,7 +16,7 @@ class LocationHierarchyDesign(DesignJob):
         description="Country where sites are located.",
     )
     region_prefix=IPNetworkVar(min_prefix_length=8, max_prefix_length=16)
-    country_prefix=IPNetworkVar(max_prefix_length=8, max_prefix_lenth=16)
+    country_prefix=IPNetworkVar(max_prefix_length=8, max_prefix_length=16)
     has_sensitive_variables = False
 
     class Meta:
