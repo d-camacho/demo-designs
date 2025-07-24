@@ -1,13 +1,13 @@
 ---
 
-designs:
-  - prefixes:
-      - prefix: "{{ region_prefix }}"
-        status__name: "Active"
-        type: "container"
-        "!ref": "region_prefix"
 
-      - prefix: "{{ country_prefix }}"
-        status__name: "Active"
-        type: "container"
-        "!ref": "country_prefix"
+- prefixes:
+    - prefix: "{{ region_prefix }}"
+      status__name: "Active"
+      type: "container"
+      "!ref": "region_prefix"
+
+    - prefix: "{{ country_prefix }}"
+      status__name: "Active"
+      type: "container"
+      "!ref": "country_prefix"
