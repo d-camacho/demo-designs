@@ -6,6 +6,17 @@ location_types:
       - name: "Country"
         nestable: true
 
+prefixes:
+      - prefix: "{{ region_prefix }}"
+        status__name: "Active"
+        type: "container"
+        "!ref": "region_prefix"
+
+      - prefix: "{{ country_prefix }}"
+        status__name: "Active"
+        type: "container"
+        "!ref": "country_prefix"
+
 locations:
   - name: "{{ region_name }}"
     location_type__name: "Continent"
