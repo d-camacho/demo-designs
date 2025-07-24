@@ -27,7 +27,7 @@ class LocationHierarchyContext(Context):
             raise DesignValidationError(f"Region '{self.region_name}' already exists.")
 
     def _validate_country(self):
-        if Location.objects.filter(name__iexact=self.country_name).exist():
+        if Location.objects.filter(name__iexact=self.country_name).exists():
             raise DesignValidationError(f"Country '{self.country_name}' already exists.")
     
     def _validate_prefix(self):
