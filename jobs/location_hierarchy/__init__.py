@@ -7,14 +7,14 @@ from .context import LocationHierarchyContext
 class LocationHierarchyDesign(DesignJob):
     """Creates a hierarchy of locations so users can nest new sites under."""
 
-    region_name = StringVar(
-        label="Region",
-        description="Parent Region (e.g., Americas, Europe, etc.)",
-    )
-    country_name = StringVar(
-        label="Country",
-        description="Country where sites will be located (e.g., United States)",
-    )
+    # region_name = StringVar(
+    #     label="Region",
+    #     description="Parent Region (e.g., Americas, Europe, etc.)",
+    # )
+    # country_name = StringVar(
+    #     label="Country",
+    #     description="Country where sites will be located (e.g., United States)",
+    # )
     region_prefix = IPNetworkVar(
         label="Region Prefix",
         min_prefix_length=8,

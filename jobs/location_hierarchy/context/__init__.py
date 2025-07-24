@@ -10,8 +10,8 @@ from netaddr import IPNetwork
 class LocationHierarchyContext(Context):
     """Render context for Regions and nested Country"""
 
-    region_name: str
-    country_name: str
+    # region_name: str
+    # country_name: str
     region_prefix: IPNetwork
     country_prefix: IPNetwork
     
