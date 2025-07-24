@@ -11,17 +11,14 @@ location_types:
       - "!create_or_update:name": "Europe"
         location_type__name: "Region"
         status__name: "Active"
-        prefixes:
-          - prefix: "{{ region_prefix }}"
-            status__name: "Active"
+        
             
       
         children:
         - "!create_or_update:name": "Germany"
           location_type__name: "Country"
           status__name: "Active"
-          prefixes:
-          - prefix: "{{ country_prefix }}"
-            status__name: "Active"
+         
+         
             
           
