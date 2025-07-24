@@ -1,13 +1,12 @@
----
+abstract: true
+designs:
+  - prefixes:
+    - "!create_or_update:prefix": "{{ region_prefix }}"
+      status__name: "Active"
+      type: "container"
+      "!ref": "region_prefix"
 
-
-prefixes:
-  - "!create_or_update:prefix": "{{ region_prefix }}"
-    status__name: "Active"
-    type: "container"
-    "!ref": "region_prefix"
-
-  - "!create_or_update:prefix": "{{ country_prefix }}"
-    status__name: "Active"
-    type: "container"
-    "!ref": "country_prefix"
+    - "!create_or_update:prefix": "{{ country_prefix }}"
+      status__name: "Active"
+      type: "container"
+      "!ref": "country_prefix"
