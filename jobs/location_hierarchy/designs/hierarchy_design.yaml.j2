@@ -1,6 +1,22 @@
 ---
+extensions:
+  - "nautobot_design_builder.contrib.ext.ChildPrefixExtension"
+
+prefixes:
+  - "!create_or_update:prefix": "{{ region_prefix }}"
+    type: "container"
+    status__name: "Active"
+    description: "Prefix for region {{ region_name }}"
+    "!ref": "region_prefix"
+
+  - "!create_or_update:prefix": "{{ country_prefix }}"
+    type: "container"
+    status__name: "Active"
+    description: "Prefix for country {{ country_name }}"
+    "!ref": "country_prefix"
+
 location_types:
-  - name: "Continent"
+  - name: "Region"
     nestable: true
     children:
       - name: "Country"
@@ -8,28 +24,17 @@ location_types:
 
 locations:
   - name: "{{ region_name }}"
-    location_type__name: "Continent"
+    location_type__name: "Region"
     status__name: "Active"
-    
-        
-        
+    prefixes:
+      - "!ref": "region_prefix"
+    "!ref": "region_location"
+
     children:
       - name: "{{ country_name }}"
         location_type__name: "Country"
         status__name: "Active"
         description: "Sub-region of {{ region_name }}"
-        
-          
-            
-prefixes:
-      - prefix: "{{ region_prefix }}"
-        status__name: "Active"
-        type: "container"
-        "!ref": "region_prefix"
-        location: "{{ region_name }}"
-
-      - prefix: "{{ country_prefix }}"
-        status__name: "Active"
-        type: "container"
-        "!ref": "country_prefix"
-        location: "{{ country_name }}"
+        prefixes:
+          - "!ref": "country_prefix"
+        "!ref": "country_location"
