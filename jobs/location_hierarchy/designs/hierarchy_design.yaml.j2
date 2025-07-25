@@ -1,43 +1,12 @@
 ---
 
 
-prefixes:
-  - "!create_or_update:prefix": "{{ region_prefix }}"
-    type: "container"
-    status__name: "Active"
-    description: "Prefix for region {{ region_name }}"
-    "!ref": "region_prefix"
-
-  - "!create_or_update:prefix": "{{ country_prefix }}"
-    type: "container"
-    status__name: "Active"
-    description: "Prefix for country {{ country_name }}"
-    "!ref": "country_prefix"
-
-location_types:
-  - "!create_or_update:name": "Region"
-    nestable: true
-    children:
-      - "!create_or_update:name": "Country"
-        nestable: true
-
 locations:
   - "!create_or_update:name": "{{ region_name }}"
-    location_type__name: "Region"
     status__name: "Active"
+    location_type__name: "Region"
     prefixes:
-      - "!ref": "region_prefix"
+      - prefix: "{{ region_prefix }}"
         status__name: "Active"
-        prefix_length: 8
-    "!ref": "region_location"
-
-    children:
-      - "!create_or_update:name": "{{ country_name }}"
-        location_type__name: "Country"
-        status__name: "Active"
-        description: "Sub-region of {{ region_name }}"
-        prefixes:
-          - "!ref": "country_prefix"
-            status__name: "Active"
-            prefix_length: 12
-        "!ref": "country_location"
+        
+    
