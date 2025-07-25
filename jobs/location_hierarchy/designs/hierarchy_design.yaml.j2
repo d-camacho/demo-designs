@@ -22,7 +22,7 @@ locations:
     {% endfor %}
 circuits:
   {% for i in range(2) %}
-  - cid: "{{ country_name_name }}-CKT-{{ i }}"
+  - cid: "{{ country_name }}-CKT-{{ i }}"
     status__name: "Planned"
     provider__name: "CLAB"
     circuit_type__name: "Ethernet"
