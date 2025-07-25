@@ -7,28 +7,3 @@ locations:
     prefixes:
       - prefix: "{{ country_prefix }}"
         status__name: "Reserved"
-    devices:
-    {% for i in range(2) %}
-      - name: "{{ country_name }}-LR{{ i }}"
-        status__name: "Planned"
-        device_type__model: "C8300-1N1S-6T"
-        role__name: "Edge Router"
-        platform__name: "Cisco IOS"
-        interfaces:
-          - name: "GigabitEthernet0/0"
-            type: "1000base-t"
-            description: "Uplink to backbone"
-            status__name: "Planned"
-    {% endfor %}
-circuits:
-  {% for i in range(2) %}
-  - cid: "{{ country_name }}-CKT-{{ i }}"
-    status__name: "Planned"
-    provider__name: "CLAB"
-    circuit_type__name: "Ethernet"
-    circuit_terminations:
-      - term_side: "A"
-        location__name: "{{ country_name }}"
-      - term_side: "Z"
-        provider_network__name: "CLAB-WAN"
-  {% endfor %}
