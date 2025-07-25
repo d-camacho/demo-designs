@@ -28,7 +28,7 @@ locations:
     prefixes:
       - "!ref": "region_prefix"
         status__name: "Active"
-        prefix_length: "{{ region_prefix | string | split('/') | last }}"
+        prefix_length: 8
     "!ref": "region_location"
 
     children:
@@ -39,5 +39,5 @@ locations:
         prefixes:
           - "!ref": "country_prefix"
             status__name: "Active"
-            prefix_length: "{{ country_prefix | string | split ('/') | last }}"
+            prefix_length: 12
         "!ref": "country_location"
