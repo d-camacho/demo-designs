@@ -12,8 +12,7 @@ class LocationHierarchyDesign(DesignJob):
     region_type = ObjectVar(
         model=LocationType
     )
-    region_name = ObjectVar(
-        model=Location,
+    region_name = StringVar(
         label="Region",
         description="Parent Region (e.g., Americas, Europe, etc.)",
     )
