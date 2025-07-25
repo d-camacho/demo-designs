@@ -5,7 +5,8 @@
 locations:
   - name: "{{ country_name }}"
     status__name: "Staging"
-    location_type__name: "Region"
+    location_type__name: "Site"
+    parent__name: "{{ region_name.name }}"
     prefixes:
       - prefix: "{{ country_prefix }}"
         status__name: "Reserved"
