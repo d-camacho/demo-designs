@@ -9,8 +9,7 @@ from nautobot.dcim.models import Location
 class LocationHierarchyDesign(DesignJob):
     """Creates a hierarchy of locations so users can nest new sites under."""
 
-    region_name = ObjectVar(
-        model=Location,
+    region_name = StringVar(
         label="Region",
         description="Parent Region (e.g., Americas, Europe, etc.)",
     )
