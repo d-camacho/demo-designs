@@ -4,7 +4,7 @@
 
 locations:
   - "!create_or_update:name": "{{ region_name }}"
-    location_type__name: "Region"
+    location_type__name: "{{ region_type }}"
     status__name: "Active"
     prefixes:
       - "!create_or_update:prefix": "{{ region_prefix }}"
