@@ -1,13 +1,32 @@
 ---
 
-  
+location_types:
+  - "!create_or_update:name": "Region"
+    nestable: true
+    "!ref": "region_type"
+    children:
+      - "!create_or_update:name": "Country"
+        nestable: true
+        "!ref": "country_type"
 
 locations:
-  - name: "{{ region_name }}"
-    status__name: "Staging"
-    location_type__name: "Region"
+  - "!create_or_update:name": "{{ region_name }}"
+    location_type: "!ref:region_type"
+    status__name: "Active"
     prefixes:
-      - prefix: "{{ region_prefix }}"
-        status__name: "Reserved"
-  
+      - "!create_or_update:prefix": "{{ region_prefix }}"
+        type: "container"
+        status__name: "Active"
+        "!ref": "region_prefix"
+    "!ref": "region_location"
 
+    children:
+      - "!create_or_update:name": "{{ country_name }}"
+        location_type: "!ref:country_type"
+        status__name: "Active"
+        prefixes:
+          - "!create_or_update:prefix": "{{ country_prefix }}"
+            type: "container"
+            status__name: "Active"
+            "!ref": "country_prefix"
+        "!ref": "country_location"
