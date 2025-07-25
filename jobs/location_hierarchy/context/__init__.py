@@ -1,6 +1,7 @@
 from nautobot.extras.jobs import IPNetworkVar
 from nautobot.dcim.models import Location
 from nautobot.ipam.models import Prefix
+from nautobot.apps.jobs import ObjectVar
 
 from nautobot_design_builder.context import Context
 from nautobot_design_builder.errors import DesignValidationError
@@ -11,10 +12,10 @@ from netaddr import IPNetwork
 class LocationHierarchyContext(Context):
     """Render context for Regions and nested Country"""
 
-    # region_name: str
-    # country_name: str
-    # region_prefix: IPNetwork
-    # country_prefix: IPNetwork
+    region_name: ObjectVar
+    country_name: str
+    region_prefix: IPNetwork
+    country_prefix: IPNetwork
 
     # def validate(self):
     #     self._validate_region()
