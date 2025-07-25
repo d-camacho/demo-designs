@@ -4,10 +4,7 @@ location_types:
   - "!create_or_update:name": "Region"
     nestable: true
     "!ref": "region_type"
-    children:
-      - "!create_or_update:name": "Country"
-        nestable: true
-        "!ref": "country_type"
+  
 
 locations:
   - "!create_or_update:name": "{{ region_name }}"
