@@ -19,15 +19,3 @@ locations:
         status__name: "Active"
         "!ref": "region_prefix"
     "!ref": "region_location"
-
-    children:
-      - "!create_or_update:name": "{{ country_name }}"
-        location_type: "!ref:country_type"
-        status__name: "Active"
-        description: "Sub-region of {{ region_name }}"
-        prefixes:
-          - "!create_or_update:prefix": "{{ country_prefix }}"
-            type: "container"
-            status__name: "Active"
-            "!ref": "country_prefix"
-        "!ref": "country_location"
